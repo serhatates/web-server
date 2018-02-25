@@ -47,7 +47,7 @@ app.use(middleware.logger); // ctrl +shift + R(ctrl + f5) force(hard) reload - o
 // add another route to our express server app
 // route level authenticaton => add as a second argument to route
 app.get('/about', middleware.requireAuthentication, function (req, res) { // about page
-    res.send('About us');
+    res.send('About us!');
 });
 
 /*  
@@ -119,7 +119,8 @@ app.listen(PORT, function () { // it gets called once the server starts
   * git add . , add all folders and files in current dir to tracking changes
   * git rm -r --cached node_modules ,  remove from cached to be committed(ignore) for not tracking changes,  we don't want to tracking the node_modules folder since we can reinstall these npm modules at any time, there is node need for us carry all that weight
   * .gitignore lets you specify files and folders you want git to ignore, in this case we never want to track changes to anything in the node_modules folder so we added to .gitignore file
-  *  now we're ready to make our first commit which saves the current state of the project
-  *  to make a commit;
-  * 
+  *   now we're ready to make our first commit which saves the current state of the project
+  *   to make a commit;
+  * git commit -a -m "Initialize repo"   => a flag for changes to commit for modified files or add files m flag for message
+  *   now anytime we make changes to files we can track these changes and see differences
   */
