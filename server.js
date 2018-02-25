@@ -10,16 +10,7 @@ var PORT = 3000; // when you use uppercase for a variable name in javascript, yo
     - This will depend on your cloud hosting server/service. 
       They usually assign a port for your Node app to use by providing the PORT environment variable.    
 */
-var middleware = {
-    requireAuthentication: function (req, res, next) { // next call tell express to move on
-        console.log('private route hit!');
-        next();
-    },
-    logger: function (req, res, next) {
-        console.log('Request: %s - Date: %s', req.method + ' ' + req.originalUrl, new Date().toLocaleString()); // originalUrl: that's going to show which requests are being made to our server
-        next();
-    }
-};
+var middleware = require('./middleware.js');
 /*
     express feature => middleware: makes it really easy to run a specific function for all of your routes or just for some.
     you could add have a middleware that requires authentication.
@@ -121,6 +112,12 @@ app.listen(PORT, function () { // it gets called once the server starts
   * .gitignore lets you specify files and folders you want git to ignore, in this case we never want to track changes to anything in the node_modules folder so we added to .gitignore file
   *   now we're ready to make our first commit which saves the current state of the project
   *   to make a commit;
-  * git commit -a -m "Initialize repo"   => a flag for changes to commit for modified files or add files m flag for message
+  * git commit -a -m "Initialize repo"   => a flag for changes(every file) - even those that are unstaged -  to commit for modified files or add files, m flag for message
   *   now anytime we make changes to files we can track these changes and see differences
+  * ------ 
+    *  There's files that git doesn't track those files are called untracked files
+    *  Then there is individual file that get knows about
+    *  They can either be unchanged or changed, if files changed;
+    *  It's not necessarily going to be commited until it's what's called staged
+    *  Everything that's staged is going to be committed on the next commit
   */
