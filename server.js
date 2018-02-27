@@ -3,7 +3,8 @@
 var express = require('express'); // we're going to store all the code in the express library
 var app = express();
 
-var PORT = 3000; // when you use uppercase for a variable name in javascript, you're saying that variables value shouldn't be changed, should be constant
+// heroku actually sets an environment variable and it gives you the port you need to listen to
+var PORT = process.env.PORT || 3000; // when you use uppercase for a variable name in javascript, you're saying that variables value shouldn't be changed, should be constant
 
 /*
     + When deploying to the cloud, port ?
@@ -14,7 +15,7 @@ var middleware = require('./middleware.js');
 /*
     express feature => middleware: makes it really easy to run a specific function for all of your routes or just for some.
     you could add have a middleware that requires authentication.
-    app level middleware which runs for every route --- route level middleware for certain routes
+    app level middleware which runs for every route --- ute level middroleware for certain routes
     it lets you add stuff to specific routes or to everything in your application
  
 */
@@ -67,7 +68,7 @@ app.listen(PORT, function () { // it gets called once the server starts
 
 /*
     req: request holds all the information sent from the user like url, any json they passed along, any cookies or other data, it's an object
-    res: response is what you want to send backto the user, it's an object
+    res: response is what you want to send back to the user, it's an object
     app.get: get corresponds to the HTTP GET METHOD, request method, request some info from the server with req data
 */
 
@@ -120,4 +121,44 @@ app.listen(PORT, function () { // it gets called once the server starts
     *  They can either be unchanged or changed, if files changed;
     *  It's not necessarily going to be commited until it's what's called staged
     *  Everything that's staged is going to be committed on the next commit
+  * git remote add origin https://github.com/serhatates/web-server.git (first we create repo on github)
+  * git remote, check it see origin
+  * git remote -v , verbose - see exact url
+    * to use ssh-keygen on windows , need to use Git Bash 
+    * ssh: The client needs the correct public key, and you need the private key on your local machine.
+    *  Any service you give the public key to will be able to authenticate you just fine. 
+    *
+    git diff, see differences
+    git commit -am "Update port for heroku"  
   */
+
+  /**
+    * -----------------ssh key-------------------------
+    * SSH Keys let you authenticate with a service without needing to type in your username and password every time you want to communicate.
+    *
+    * When you attempt to connect, your machine tells the server which public key it wants to use. 
+    * This would be the one you copied over to GitHub/Heroku. 
+    * The server checks if the associated public key exists on their side. 
+    * If it does, it encrypts a random message using the public key and sends it back to your machine. 
+    * The only way to decrypt that message is using the associated private key.
+    *
+    * Your machine tries to decrypt it using the private key. 
+    * When it does, it hashes the result and sends it back to the server for verification.
+    * Since the server is the one who generated the unencrypted random message, it's able to verify the result sent back from the client.
+    *
+    * I keep one SSH Key per machine. 
+    * 
+    * on git bash for adding shh key on windows, need to run;
+    *   eval "$(ssh-agent -s)"
+    *   ssh-add ~/.ssh/id_rsa
+    * test for checking ssh key;
+    *   ssh -T git@github.com
+    * 
+   */
+  
+   /**---------------heroku------------------------
+    *  heroku create, creates a brand new Heroku app
+    *  heroku open, open the app, boiler plate heroku app created
+    *    once we push our code you are going to see our  project;
+    *  
+    */
