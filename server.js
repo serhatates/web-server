@@ -15,19 +15,19 @@ var middleware = require('./middleware.js');
 /*
     express feature => middleware: makes it really easy to run a specific function for all of your routes or just for some.
     you could add have a middleware that requires authentication.
-    app level middleware which runs for every route --- ute level middroleware for certain routes
+    app level middleware which runs for every route --- route level middleware for certain routes
     it lets you add stuff to specific routes or to everything in your application
- 
 */
+
 // it runs for every single route and it's pretty useful
-app.use(middleware.logger); // ctrl +shift + R(ctrl + f5) force(hard) reload - overriding cache => when you load a page, your browser stores a local copy on your computer — this is called a 'cache'.
+app.use(middleware.logger); // ctrl + shift + R(ctrl + f5) force(hard) reload - overriding cache => when you load a page, your browser stores a local copy on your computer — this is called a 'cache'.
 // favicon.ico => this file is used inside of the tab in chrome, it's like your little logo for your website
 
 // sense require auth is going to run first before the body 
-// the order you define them in is important
-// if i were to put this use call down below the about route, it would never run
-// when you call app.use you adding app level middleware, it's gonna get called every page requested and every route hit
-// app.use(middleware.requireAuthentication);
+// * the order you define them in is important 
+// * if i were to put this use call down below the about route, it would never run 
+// when you call app.use you adding app level middleware, it's gonna get called every page requested and every route hit 
+// app.use(middleware.requireAuthentication); 
 
 // now we can add route
 // app.get('/', function (req, res) { // first argument for app is route (url)
@@ -61,7 +61,7 @@ app.use(express.static(__dirname + '/public')); // takes the folder that you wan
  */
 
 // and tell the app which port to listen on
-app.listen(PORT, function () { // it gets called once the server starts
+app.listen(PORT, () => { // it gets called once the server starts
     console.log('Express server started to listening on port: %d', PORT);
 });
 
@@ -100,7 +100,7 @@ app.listen(PORT, function () { // it gets called once the server starts
 /**
     API is short for application programming interface.
     In a general sense, and API is how a programmer can interact with some library or system. 
-    For example, most of the 3rd party modules have an API (a way the user can interact with the module).
+    For example, most of the 3rd party modules have an API (a way the user can interact with the module, here user can be developer as well).
     In the case of the Todo API, it's an HTTP API. Meaning that instead of calling functions or methods, you're making HTTP requests to specific urls. 
     It's still an API though. It's a way for a developer to interact with the system.
  */
@@ -113,7 +113,7 @@ app.listen(PORT, function () { // it gets called once the server starts
   * .gitignore lets you specify files and folders you want git to ignore, in this case we never want to track changes to anything in the node_modules folder so we added to .gitignore file
   *   now we're ready to make our first commit which saves the current state of the project
   *   to make a commit;
-  * git commit -a -m "Initialize repo"   => a flag for changes(every file) - even those that are unstaged -  to commit for modified files or add files, m flag for message
+  * git commit -a -m "Initialize repo"   => 'a' flag for changes(every file) - even those that are unstaged -  to commit for modified files or add files, m flag for message
   *   now anytime we make changes to files we can track these changes and see differences
   * ------ 
     *  There's files that git doesn't track those files are called untracked files
@@ -128,8 +128,14 @@ app.listen(PORT, function () { // it gets called once the server starts
     * ssh: The client needs the correct public key, and you need the private key on your local machine.
     *  Any service you give the public key to will be able to authenticate you just fine. 
     *
+    * 
+    * ----for heroku----
     git diff, see differences
-    git commit -am "Update port for heroku"  
+    git commit -am "Update port for heroku"
+    git push, leave off the remote which origin and the branch which is master, since the origin remote th master branch are default
+
+    we also set that matching configuration variable when we first installed git, that's how heroku knows to push the branch you are on
+
   */
 
   /**
@@ -160,5 +166,6 @@ app.listen(PORT, function () { // it gets called once the server starts
     *  heroku create, creates a brand new Heroku app
     *  heroku open, open the app, boiler plate heroku app created
     *    once we push our code you are going to see our  project;
-    *  
-    */
+    *  git push heroku master
+    */ 
+   
